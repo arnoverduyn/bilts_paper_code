@@ -62,7 +62,7 @@ function params_descriptor = use_trained_parameters(params_descriptor, validatio
                         switch validation_set_name
                             case 'SYN'
                                 params_descriptor.lambda = 10;          % 72.1%
-                                params_descriptor.L = 0.1;    
+                                params_descriptor.L = 0.3;    
                             case 'DLA'
                                 params_descriptor.lambda = 0.01;        % 97.0%
                                 params_descriptor.L = 0.5;  

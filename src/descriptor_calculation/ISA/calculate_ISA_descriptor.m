@@ -27,8 +27,8 @@ function descriptor = calculate_ISA_descriptor(T,dt,params_descriptor,params_kal
             
         case {'ISA_opt'}
    
-            R_ASA = calculate_average_orientation(screwtwist(1:3,:));
-            p_ASA = calculate_ASA_origin(screwtwist,10^(-6));
+            R_ASA = calculate_ASA_frame_orientation(screwtwist(1:3,:));
+            p_ASA = calculate_ASA_frame_origin(screwtwist,10^(-6));
             T_ASA = [R_ASA,p_ASA; 0 0 0 1];
             
             inv_T_ASA = inverse_T(T_ASA);

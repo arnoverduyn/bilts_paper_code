@@ -19,23 +19,23 @@ restoredefaultpath;
 addpath(genpath('..\Libraries\'));       % Path to CasADi
 addpath(genpath('..\src\'));             % Path to src folder
 
-datasets_path = '..\Data\Datasets';   % Path to the rigid-body motion datasets
+datasets_path = '..\Data\Datasets';      % Path to the rigid-body motion datasets
 outputpath = '..\Output\';               % Folder where intermediate results are stored
 
 %% High-level Settings
 
 % Experiment type: 'training' or 'test'
-experiment = 'test'; 
+experiment = 'training'; 
 
 % Available descriptors: 'ISA', 'ISA_opt', 'DHB', 'eFS', 'RRV', 'DSRF', 'BILTS_discrete', 'BILTS_discrete_reg'
-params_descriptor = struct('name', 'BILTS_discrete_reg');     
+params_descriptor = struct('name', 'ISA_opt');     
 
 % Available progress parameters: 'arclength', 'angle', 'screwbased'
 params_descriptor.progress_type = 'screwbased'; 
 
 %% Specify the dataset 
-dataset = struct('name','DLA',...           % 'DLA' or 'SYN'
-                 'model_set','normal_V2');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
+dataset = struct('name','SYN',...           % 'DLA' or 'SYN'
+                 'model_set','Original');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
 dataset.path = fullfile(datasets_path, dataset.name);
 if strcmp(dataset.name,'DLA')
     dataset.adapted_version = 0;
@@ -48,7 +48,7 @@ end
 %% Run the experiment
 switch experiment
     case 'training'
-        train_parameters(bools, params_descriptor, dataset, outputpath);
+        train_parameters(params_descriptor, dataset, outputpath);
     case 'test'
         params_descriptor = use_trained_parameters(params_descriptor,dataset.name);
         results = run_classification_experiment(params_descriptor,dataset,outputpath,'test');

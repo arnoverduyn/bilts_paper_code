@@ -1,4 +1,4 @@
-function train_parameters(bools, params_descriptor, dataset, outputpath)
+function train_parameters(params_descriptor, dataset, outputpath)
     
     % Define the 2D grid for the parameters on which the grid search is performed
     [x_vector,y_vector,xy_grid,x_N,y_N] = define_2D_grid(params_descriptor);
@@ -36,17 +36,13 @@ function train_parameters(bools, params_descriptor, dataset, outputpath)
 
     %% Post-process and visualize the results
 
-    % Apply the Moving Average Filter
-    xy_grid_smoothed = smoothdata(xy_grid, 'gaussian', [2 2]);
-
     % Find the maximum value and its linear index
-    [~, linear_index] = max(xy_grid_smoothed(:));
+    [~, linear_index] = max(xy_grid(:));
     
     % Convert the linear index to row and column indices
     [row, col] = ind2sub(size(xy_grid), linear_index);
     
-    display_training_results(xy_grid(row,col),y_vector(row),x_vector(col))
-    plot_training_results(xy_grid,x_vector,y_vector,x_N,y_N,'raw')
-    plot_training_results(xy_grid_smoothed,x_vector,y_vector,x_N,y_N,'after moving average smoother')   
+    display_training_results(xy_grid(row,col),y_vector(row),x_vector(col),params_descriptor)
+    plot_training_results(xy_grid,x_vector,y_vector,x_N,y_N,'Recognition Results over the 2D grid')
 
 end

@@ -30,7 +30,7 @@ partition_size = round(nb_trials/nb_partitions);
 [name,progress_type,L,lambda,ds_scale] = get_descriptor_parameters(params_descriptor);
 trials_copy = trials;
 
-for Q = 1:nb_partitions+1
+parfor Q = 1:nb_partitions+1
 
     % Initialize parameters and variables for the current partition (parfor thread)
     trials = trials_copy;
