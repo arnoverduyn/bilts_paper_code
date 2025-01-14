@@ -1,0 +1,5 @@
+*.asv
+Libraries/casadi_library/casadi-windows-matlabR2016a-v3.5.5
+Data/Datasets/**
+Output/**
+TRASH/**
