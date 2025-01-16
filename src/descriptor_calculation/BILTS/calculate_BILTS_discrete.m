@@ -3,26 +3,26 @@ function descriptor = calculate_BILTS_discrete(T,dt,params_descriptor)
     % Unpack parameters
     L = params_descriptor.L;
     ds_scale = params_descriptor.ds_scale;
-    N = 100;
+    N = 50;
 
     % Reparametrize temporal trajectory to geometric domain
     [T_s,s] = reparameterize_trajectory(T,dt,N,params_descriptor);
     ds = s(end)/(N-1);
             
-    % Ensure M does not exceeds the maximum allowed value
+    % Ensure M does not exceed the maximum allowed value
     m = max(1,round(ds_scale/ds));
-    if m > 48
-        m = 48;
+    if m > 23
+        m = 23;
     end
     M = 2*m+1;
     
-    % Setting regularized vs unregularized case
+    % Setting regularized vs unregularized case + filter parameters
     if strcmp(params_descriptor.name,'BILTS_discrete_reg')
         regularization = true;
-        N_gauss = 20;
+        N_gauss = 10; 
     else
         regularization = false;
-        N_gauss = 30; % need for more smoothing to reduce sensitivity to noise near singularisties
+        N_gauss = 20; % need for more smoothing to reduce sensitivity to noise near singularities
     end
     
     [pos,quat] = pose2quat(T_s);

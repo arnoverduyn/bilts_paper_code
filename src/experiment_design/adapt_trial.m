@@ -25,7 +25,7 @@ function T = adapt_trial(T,trial,model_set,dataset_adapted_version)
     elseif dataset_adapted_version == 2
     
         % Successive motions in diverse directions
-        N_successive = round(2*size(T,3));
+        N_successive = round(2*size(T,3)-1);
         T_successive = zeros(4,4,N_successive);
         T_successive(:,:,1:size(T,3)) = T;
         if strcmp(trial.motion_class,'cutting') || strcmp(trial.motion_class,'pouring_with_cup') || ...
@@ -37,13 +37,30 @@ function T = adapt_trial(T,trial,model_set,dataset_adapted_version)
         end
     
         if strcmp(trial.context,model_set)
-            rotation = rotz(45*sign_angle);
+            rotation = rotz(90*sign_angle);
         else
-            rotation = rotz(-45*sign_angle);
+            rotation = rotz(-90*sign_angle);
         end
-    
-        for k = 1:size(T,3)
-            T_successive(:,:,size(T,3)+k) = [rotation, [0;0;0] ;0 0 0 1]*T(:,:,k);
+        
+        R_end = T(1:3,1:3,end);
+        R_start_rotated = rotation*T(1:3,1:3,1);
+        delta_R = transpose(R_start_rotated)*R_end;
+
+        for k = 2:size(T,3)
+
+            % Rotate the orientation trajectory while ensuring continuity
+            % after concatenation
+            R_rotated = rotation*T(1:3,1:3,k)*delta_R;
+
+            % Rotate the position trajectory while ensuring continuity
+            % after concatenation
+            p_rotated = rotation*(T(1:3,4,k)-T(1:3,4,1)) + T(1:3,4,1);
+
+            T_rotated = [R_rotated, p_rotated ;0 0 0 1];
+
+            % Concatenate with the original trajectory
+            T_successive(:,:,size(T,3)+k) = T_rotated;
+
         end
         T = T_successive;
     end

@@ -1,4 +1,4 @@
-function params_descriptor = use_trained_parameters(params_descriptor, validation_set_name)
+function params_descriptor = use_trained_parameters(params_descriptor, validation_set_name, adapted_version)
     
     % Values for the trained parameters. These were hard-coded after training
     
@@ -13,29 +13,56 @@ function params_descriptor = use_trained_parameters(params_descriptor, validatio
                     case 'arclength'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 100;        % 73.6%
-                                params_descriptor.L = 0.1;    
+                                params_descriptor.lambda = 100;       
+                                params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.lambda = 10;          % 89%
-                                params_descriptor.L = 0.1;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 10;         
+                                        params_descriptor.L = 0.1; 
+                                    case 1
+                                        params_descriptor.lambda = 10;         
+                                        params_descriptor.L = 0.1; 
+                                    case 2
+                                        params_descriptor.lambda = 10;         
+                                        params_descriptor.L = 0.1; 
+                                end 
                         end
                     case 'angle'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 10;          % 55%
+                                params_descriptor.lambda = 100;         
                                 params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.1;         % 92.0%
-                                params_descriptor.L = 0.9;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.1;         
+                                        params_descriptor.L = 0.9; 
+                                    case 1
+                                        params_descriptor.lambda = 0.1;         
+                                        params_descriptor.L = 0.9; 
+                                    case 2
+                                        params_descriptor.lambda = 0.1;         
+                                        params_descriptor.L = 0.7; 
+                                end  
                         end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 100;         % 73.6%
+                                params_descriptor.lambda = 100;       
                                 params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.1;         % 94.0%
-                                params_descriptor.L = 0.7;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.05;         
+                                        params_descriptor.L = 0.5; 
+                                    case 1
+                                        params_descriptor.lambda = 1;         
+                                        params_descriptor.L = 0.5; 
+                                    case 2
+                                        params_descriptor.lambda = 0.01;         
+                                        params_descriptor.L = 0.5; 
+                                end  
                         end
                 end
             case 'eFS'
@@ -43,29 +70,56 @@ function params_descriptor = use_trained_parameters(params_descriptor, validatio
                     case 'arclength'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 10;          % 59.3%
-                                params_descriptor.L = 0.7;    
+                                params_descriptor.lambda = 10;          
+                                params_descriptor.L = 0.1;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.1;         % 82.0%
-                                params_descriptor.L = 0.1;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.1;         
+                                        params_descriptor.L = 0.1; 
+                                    case 1
+                                        params_descriptor.lambda = 0.1;         
+                                        params_descriptor.L = 0.1; 
+                                    case 2
+                                        params_descriptor.lambda = 0.001;         
+                                        params_descriptor.L = 0.1; 
+                                end 
                         end
                     case 'angle'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 1;           % 55%
-                                params_descriptor.L = 0.1;    
+                                params_descriptor.lambda = 0.1;           
+                                params_descriptor.L = 0.7;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.001;       % 90.0%
-                                params_descriptor.L = 0.9;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.001;         
+                                        params_descriptor.L = 0.7; 
+                                    case 1
+                                        params_descriptor.lambda = 0.01;         
+                                        params_descriptor.L = 0.9; 
+                                    case 2
+                                        params_descriptor.lambda = 0.001;         
+                                        params_descriptor.L = 0.9; 
+                                end
                         end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 10;          % 72.1%
-                                params_descriptor.L = 0.3;    
+                                params_descriptor.lambda = 10;       
+                                params_descriptor.L = 0.1;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.01;        % 97.0%
-                                params_descriptor.L = 0.5;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.01;         
+                                        params_descriptor.L = 0.5; 
+                                    case 1
+                                        params_descriptor.lambda = 0.01;         
+                                        params_descriptor.L = 0.7; 
+                                    case 2
+                                        params_descriptor.lambda = 0.001;         
+                                        params_descriptor.L = 0.5; 
+                                end
                         end
                 end
                        
@@ -74,97 +128,147 @@ function params_descriptor = use_trained_parameters(params_descriptor, validatio
                     case 'angle'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 10^(-3);     % 63.6%
-                                params_descriptor.L = 0.7;    
+                                params_descriptor.lambda = 0.001;   
+                                params_descriptor.L = 0.1;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.0001;      % 89.0%
-                                params_descriptor.L = 0.5;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.5; 
+                                    case 1
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.5; 
+                                    case 2
+                                        params_descriptor.lambda = 0.001;         
+                                        params_descriptor.L = 0.3; 
+                                end 
                         end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 10^(-3);     % 62.9%
+                                params_descriptor.lambda = 0.01;     
                                 params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.lambda = 10^(-4);     % 90.0%
-                                params_descriptor.L = 0.7;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.5; 
+                                    case 1
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.5; 
+                                    case 2
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.7; 
+                                end
                         end
                 end
             case 'ISA_opt'
                 switch params_descriptor.progress_type
-                    case 'angle'
-                        switch validation_set_name
-                            case 'SYN'
-                                params_descriptor.lambda = 0.01;        % 84.3%
-                                params_descriptor.L = 0.9;    
-                            case 'DLA'
-                                params_descriptor.lambda = 0.0001;      % 92.0%
-                                params_descriptor.L = 0.3;  
-                        end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.lambda = 1;           % 85.7%
+                                params_descriptor.lambda = 1;           
                                 params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.lambda = 0.001;       % 94.0%
-                                params_descriptor.L = 0.3;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.3; 
+                                    case 1
+                                        params_descriptor.lambda = 0.01;         
+                                        params_descriptor.L = 0.3; 
+                                    case 2
+                                        params_descriptor.lambda = 0.0001;         
+                                        params_descriptor.L = 0.3; 
+                                end
                         end
                 end
             case 'RRV'
                 switch validation_set_name
                     case 'SYN'
-                        params_descriptor.L = 0.9;                      % 54.3  
-                    case 'DLA'
-                        params_descriptor.L = 0.9;                      % 93.0
+                        params_descriptor.L = 0.9;                      
+                    case 'DLA'       
+                        switch adapted_version
+                            case 0       
+                                params_descriptor.L = 0.9; 
+                            case 1       
+                                params_descriptor.L = 0.9; 
+                            case 2         
+                                params_descriptor.L = 0.9; 
+                        end
                 end
             case 'DSRF'
                 switch validation_set_name
                     case 'SYN'
-                        params_descriptor.L = 0.9;                      % 88.6 
+                       params_descriptor.L = 0.9;       
                     case 'DLA'
-                        params_descriptor.L = 0.9;                      % 98.0
+                        switch adapted_version
+                            case 0      
+                                params_descriptor.L = 0.5; 
+                            case 1   
+                                params_descriptor.L = 0.7; 
+                            case 2     
+                                params_descriptor.L = 0.1; 
+                        end 
                 end
             case 'BILTS_discrete'
                 switch params_descriptor.progress_type
                     case 'angle'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.ds_scale = 20/180*pi; % 76.4%
+                                params_descriptor.ds_scale = 10/180*pi;
                                 params_descriptor.L = 0.9;    
                             case 'DLA'
-                                params_descriptor.ds_scale = 10/180*pi; % 88.0%
-                                params_descriptor.L = 0.9;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 20/180*pi;         
+                                        params_descriptor.L = 0.3; 
+                                    case 1
+                                        params_descriptor.lambda = 20/180*pi;         
+                                        params_descriptor.L = 0.3; 
+                                    case 2
+                                        params_descriptor.lambda = 30/180*pi;         
+                                        params_descriptor.L = 0.9; 
+                                end
                         end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.ds_scale = 0.06;      % 75.0%
-                                params_descriptor.L = 0.9;    
+                                params_descriptor.ds_scale = 0.06;    
+                                params_descriptor.L = 0.3;    
                             case 'DLA'
-                                params_descriptor.ds_scale = 0.12;      % 91.0%
-                                params_descriptor.L = 0.7;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.15;         
+                                        params_descriptor.L = 0.7; 
+                                    case 1
+                                        params_descriptor.lambda = 0.15;         
+                                        params_descriptor.L = 0.7; 
+                                    case 2
+                                        params_descriptor.lambda = 0.03;         
+                                        params_descriptor.L = 0.9; 
+                                end
                         end
                 end
             case 'BILTS_discrete_reg'
                 switch params_descriptor.progress_type
-                    case 'angle'
-                        switch validation_set_name
-                            case 'SYN'
-                                params_descriptor.ds_scale = 40/180*pi; % 100%
-                                params_descriptor.L = 0.9;    
-                            case 'DLA'
-                                params_descriptor.ds_scale = 10/180*pi; % 96.0%
-                                params_descriptor.L = 0.3;  
-                        end
                     case 'screwbased'
                         switch validation_set_name
                             case 'SYN'
-                                params_descriptor.ds_scale = 0.15;      % 100%
-                                params_descriptor.L = 0.9;    
+                                params_descriptor.ds_scale = 0.12;      
+                                params_descriptor.L = 0.7;    
                             case 'DLA'
-                                params_descriptor.ds_scale = 0.12;      % 95.0%
-                                params_descriptor.L = 0.3;  
+                                switch adapted_version
+                                    case 0
+                                        params_descriptor.lambda = 0.03;         
+                                        params_descriptor.L = 0.3; 
+                                    case 1
+                                        params_descriptor.lambda = 0.15;         
+                                        params_descriptor.L = 0.7; 
+                                    case 2
+                                        params_descriptor.lambda = 0.03;         
+                                        params_descriptor.L = 0.1; 
+                                end
                         end
                 end
         end

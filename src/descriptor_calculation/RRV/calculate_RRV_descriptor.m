@@ -1,7 +1,7 @@
 function descriptor = calculate_RRV_descriptor(T,dt,params_descriptor)
    
     % Unpack parameters
-    N = 100;
+    N = 50;
     
     % Normalize the point trajectory to a length of one
     [~,arclength] = reparameterize_trajectory_arclength(T,dt,false,N);
@@ -17,7 +17,7 @@ function descriptor = calculate_RRV_descriptor(T,dt,params_descriptor)
             [T_s,s] = reparameterize_trajectory_angle(T,dt,false,N);
             ds = s(end)/(N-1);
         case 'screwbased'
-            [T_s,~,s] = reparametrize_pose_trajectory(T,params_descriptor.L,dt,false,N);
+            [T_s,~,s] = reparametrize_trajectory_screwbased(T,params_descriptor.L,dt,false,N);
             T_s(1:3,4,:) = T_s(1:3,4,:)/arclength(end);
             ds = s(end)/arclength(end)/(N-1);
     end

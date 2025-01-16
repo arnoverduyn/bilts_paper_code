@@ -61,12 +61,12 @@ parfor Q = 1:nb_partitions+1
                 write_descriptor_to_csv(descriptor,outputpath,experiment,trial)
 
             else
-                if strcmp(experiment,'training') && strcmp(trial.name(end-4),'1')
+                if strcmp(experiment,'training') && (strcmp(trial.name(end-4),'1') || strcmp(trial.name(end-4),'2'))
 
                     descriptor = calculate_descriptor(T,dt,params_descriptor,params_kalman);
                     write_descriptor_to_csv(descriptor,outputpath,experiment,trial)
                     
-                elseif strcmp(experiment,'test') && not(strcmp(trial.name(end-4),'1'))
+                elseif strcmp(experiment,'test') && not(strcmp(trial.name(end-4),'1')) && not(strcmp(trial.name(end-4),'2')) 
 
                     descriptor = calculate_descriptor(T,dt,params_descriptor,params_kalman);
                     write_descriptor_to_csv(descriptor,outputpath,experiment,trial)

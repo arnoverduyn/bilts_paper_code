@@ -1,7 +1,7 @@
 function descriptor = calculate_DSRF_descriptor(T,dt,params_descriptor)
 
     % Unpack parameters
-    N = 100;
+    N = 50;
     
     % Calculate the total arclength traced by the body reference point
     [~,arclength] = reparameterize_trajectory_arclength(T,dt,false,N);
@@ -30,7 +30,7 @@ function descriptor = calculate_DSRF_descriptor(T,dt,params_descriptor)
         case 'screwbased'
 
             % Reparameterize the trajectory (L has units [m])
-            [T_s,~,s] = reparametrize_pose_trajectory(T,params_descriptor.L,dt,false,N);
+            [T_s,~,s] = reparametrize_trajectory_screwbased(T,params_descriptor.L,dt,false,N);
 
             % Normalize the reparameterized point trajectory
             T_s(1:3,4,:) = T_s(1:3,4,:)/arclength(end);

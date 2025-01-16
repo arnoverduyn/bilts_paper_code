@@ -3,7 +3,7 @@ function descriptor = calculate_DHB_descriptor(T,dt,params_descriptor,params_kal
     % Unpack parameters
     L = params_descriptor.L;
     lambda = params_descriptor.lambda;
-    N = 100;
+    N = 50;
     
     % Reparametrize temporal trajectory to geometric domain
     [T_s,s] = reparameterize_trajectory(T,dt,N,params_descriptor);

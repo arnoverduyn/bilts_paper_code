@@ -25,7 +25,7 @@ outputpath = '..\Output\';               % Folder where intermediate results are
 %% High-level Settings
 
 % Experiment type: 'training' or 'test'
-experiment = 'training'; 
+experiment = 'test'; 
 
 % Available descriptors: 'ISA', 'ISA_opt', 'DHB', 'eFS', 'RRV', 'DSRF', 'BILTS_discrete', 'BILTS_discrete_reg'
 params_descriptor = struct('name', 'ISA_opt');     
@@ -34,23 +34,22 @@ params_descriptor = struct('name', 'ISA_opt');
 params_descriptor.progress_type = 'screwbased'; 
 
 %% Specify the dataset 
-dataset = struct('name','SYN',...           % 'DLA' or 'SYN'
-                 'model_set','Original');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
+dataset = struct('name','DLA',...           % 'DLA' or 'SYN'
+                 'model_set','normal_V2');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
 dataset.path = fullfile(datasets_path, dataset.name);
-if strcmp(dataset.name,'DLA')
-    dataset.adapted_version = 0;
-    % 0 ---> original dataset
-    % 1 ---> adapted DLA 1: change in body reference point
-    % 2 ---> adapted DLA 2: successive motions in diverse directions
-end
 
+% Only applicable for DLA datasets
+dataset.adapted_version = 2;
+% 0 ---> original dataset
+% 1 ---> adapted DLA 1: change in body reference point
+% 2 ---> adapted DLA 2: successive motions in diverse directions
 
 %% Run the experiment
 switch experiment
     case 'training'
         train_parameters(params_descriptor, dataset, outputpath);
     case 'test'
-        params_descriptor = use_trained_parameters(params_descriptor,dataset.name);
+        params_descriptor = use_trained_parameters(params_descriptor,dataset.name,dataset.adapted_version);
         results = run_classification_experiment(params_descriptor,dataset,outputpath,'test');
         plot_confusion_matrix(results)
 end
