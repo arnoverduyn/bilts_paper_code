@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![GitLab code size in bytes](https://img.shields.io/badge/code%20size-0.0MB-brightgreen)
+![GitLab code size in bytes](https://img.shields.io/badge/code%20size-120KB-brightgreen)
 
 # BILTS Similarity Measure: Experimental Validation and Comparative Evaluation
 
