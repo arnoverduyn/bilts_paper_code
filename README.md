@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![GitLab code size in bytes](https://img.shields.io/badge/code%20size-120KB-brightgreen)
 
-# BILTS Similarity Measure: Experimental Validation and Comparative Evaluation
+# BILTS Measure: Experimental Validation and Comparative Evaluation
 
 This repository contains the MATLAB code for the experimental validation and comparative evaluation of the **BILTS similarity measure** against other approaches: DHB, eFS, ISA, ISA-ocp, RRV, and DSRF. The results and methodology are described in the accompanying paper (TO DO: add citation).
 
