@@ -63,7 +63,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you use this package in your research, please cite the following paper:
 
 ```
-@article{}
+@misc{...,
+      title={BILTS: A Bi-Invariant Similarity Measure for Robust Object Trajectory Recognition under Reference Frame Variations}, 
+      author={Arno Verduyn and Erwin Aertbeliën and Glenn Maes and Joris De Schutter and Maxim Vochten},
+      year={2025},
+      eprint={2405.04392},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2405.04392}, 
+}
 ```
 
 ## Acknowledgments
