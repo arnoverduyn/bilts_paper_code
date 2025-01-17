@@ -60,7 +60,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Citing
 
-If you use this package in your research, please cite the following paper:
+If you use this package in your research, please cite the following paper preprint:
 
 ```
 @misc{...,
