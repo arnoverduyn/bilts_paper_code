@@ -30,7 +30,7 @@ Libraries/casadi_library/
 ```
 
 ### 3. Datasets
-The code requires two datasets: **DLA** and **SYN**. Download these datasets from [Zenodo](https://zenodo.org/) (TO DO: add specific link). After downloading, create the directory `Data/Datasets/`, and place the datasets in the this directory:
+The code requires two datasets: **DLA** and **SYN**. Download these datasets from [Zenodo](https://doi.org/10.5281/zenodo.12806232). After downloading, create the directory `Data/Datasets/`, and place the datasets in the this directory:
 
 ```
 Data/Datasets/DLA/
