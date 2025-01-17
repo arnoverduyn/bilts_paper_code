@@ -28,18 +28,18 @@ outputpath = '..\Output\';               % Folder where intermediate results are
 experiment = 'test'; 
 
 % Available descriptors: 'ISA', 'ISA_opt', 'DHB', 'eFS', 'RRV', 'DSRF', 'BILTS_discrete', 'BILTS_discrete_reg'
-params_descriptor = struct('name', 'ISA_opt');     
+params_descriptor = struct('name', 'BILTS_discrete_reg');     
 
 % Available progress parameters: 'arclength', 'angle', 'screwbased'
 params_descriptor.progress_type = 'screwbased'; 
 
 %% Specify the dataset 
-dataset = struct('name','DLA',...           % 'DLA' or 'SYN'
-                 'model_set','normal_V2');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
+dataset = struct('name','SYN',...           % 'DLA' or 'SYN'
+                 'model_set','Original');  %  The subset from which references or 'models' will be taken: 'normal_V2' or 'Original'
 dataset.path = fullfile(datasets_path, dataset.name);
 
 % Only applicable for DLA datasets
-dataset.adapted_version = 2;
+dataset.adapted_version = 0;
 % 0 ---> original dataset
 % 1 ---> adapted DLA 1: change in body reference point
 % 2 ---> adapted DLA 2: successive motions in diverse directions
